@@ -106,9 +106,10 @@ app.post('/sort', function(req, res)
 })
 
 //Start server
-app.listen(3000, function()
+server_port = process.env.PORT || 3000;
+app.listen(server_port, function()
 {
-console.log('Server started on port 3000');
+  console.log('Listening on port %d', server_port)
 });
 
 module.exports = app;
