@@ -1,5 +1,10 @@
-each instaObj in instaObjs
-  div
-    img(src=`${instaObj.url}` style='width:280px;height:250px;')
-    h6 Likes #{instaObj.likeCount}
-    h6 Posted by #{instaObj.username}
+link(rel='stylesheet', type='text/css', href='layout.css')
+each instaObj, i in instaObjs
+  figure.einzel
+    img(src=`${instaObj.url}`, style='width: 300px; height: 300px;')
+    img.test(src='instalove.png', style='width: 65px; height: 65px;')
+    .likeText
+      | #{instaObj.likeCount}
+    figcaption
+      | @#{instaObj.username}
+    br

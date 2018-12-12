@@ -1,0 +1,103 @@
+
+ .hashtag
+ {
+  position: relative;
+  top: 30px;
+  font-size: 35px;
+  font-family: myFirstFont;
+  }
+
+  .test
+  {
+    position: relative;
+    bottom: 310px;
+    left: -10px;
+  }
+  .likeText
+  {
+    position: relative;
+    bottom: 360px;
+    left: 45px;
+    font-size: 25px;
+    color:red;
+  }
+  h2 
+  {
+	text-align: center;
+	}
+
+	.mitgliederliste {
+	margin: 0 auto;
+	text-align: center;
+	width: 90%;
+					}
+					
+  figure 
+  {
+  border: 2.5px solid #DADCDB;
+  height: 48.5%;
+	margin: 5px 5px;
+	padding: 0;
+		}
+
+
+	figure.einzel {
+	display: inline-block;
+	position: relative;
+  
+  
+				}
+
+		figure img {
+	display: block;
+  
+  max-width: 100%;
+}
+
+figcaption
+ {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  font: 400 18px/26px Verdana, sans-serif;
+  padding: .3em .3em;
+  position: absolute;
+  bottom: 0;
+  text-align: right;
+  width: 100%;
+}
+
+figcaption span
+ {
+  font-size: 14px;
+}
+@font-face 
+  {
+    font-family: tagFont;
+    src: url(FunSized.ttf);
+  }
+.movement1 
+{
+  animation: blink 3s infinite;
+
+}
+
+/* Blinking of text in the footer*/
+@keyframes blink {
+0% {
+width: 100%;
+color: white;
+}
+25% {
+color: yellow;
+}
+50% {
+color: blue;
+}
+75% {
+color: orange;
+}
+
+100% {
+color: green;
+}
+}

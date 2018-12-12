@@ -1,0 +1,189 @@
+doctype html
+html
+  head
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    style.
+      body, html 
+      {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      }
+      * {
+      box-sizing: border-box;
+      }
+      .bg-image {
+      /* The image used */
+      background-image: url(imagez/tp9.jpg);
+      /* Add the blur effect */
+      filter: blur(8px);
+      -webkit-filter: blur(8px);
+      /* Full height */
+      height: 100%;
+      /* Center and scale the image nicely */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      }
+      /* Position text in the middle of the page/image */
+      .bg-text {
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+      color: white;
+      font-weight: bold;
+      border: 3px solid #f1f1f1;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      width: 80%;
+      padding: 20px;
+      text-align: center;
+      }
+      .button {
+      padding: 15px 25px;
+      font-size: 24px;
+      text-align: center;
+      cursor: pointer;
+      outline: none;
+      color: #fff;
+      background-color: #4CAF50;
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 9px #999;
+      }
+      .button:hover {background-color: #3e8e41}
+      .button:active {
+      background-color: #3e8e41;
+      box-shadow: 0 5px #666;
+      transform: translateY(4px);
+      }
+      .movement1
+      {
+      height: 150px;
+      font-size: 100px;
+      position: relative;
+      bottom: 0;
+      text-align: center;
+      animation: blink 2s infinite;
+      }
+      /* Blinking of text in the footer*/
+      @keyframes blink {
+      0% {
+      width: 100%;
+      color: white;
+      }
+      25% {
+      color: yellow;
+      }
+      50% {
+      color: red;
+      }
+      75% {
+      color: orange;
+      }
+      100% {
+      color: green;
+      }
+      }
+      h1{
+      color: #396;
+      font-weight: 100;
+      font-size: 40px;
+      margin: 40px 0px 20px;
+      }
+      #clockdiv{
+      font-family: sans-serif;
+      color: #fff;
+      display: inline-block;
+      font-weight: 100;
+      text-align: center;
+      font-size: 30px;
+      }
+      #clockdiv > div{
+      padding: 10px;
+      border-radius: 3px;
+      background: #00BF96;
+      display: inline-block;
+      }
+      #clockdiv div > span{
+      padding: 15px;
+      border-radius: 3px;
+      background: #00816A;
+      display: inline-block;
+      }
+      .smalltext{
+      padding-top: 5px;
+      font-size: 16px;
+      }
+     #images
+        {
+        padding:10px;
+        margin:15px;
+        position: relative;
+        display: block;
+        left: 100x;
+        top: 25px;
+        box-shadow: 0px 1.5px 10px #000000;
+        }
+  body
+    .bg-image
+    .bg-text
+      #clockdiv
+        div
+          span.hours
+          .smalltext Hours
+        div
+          span.minutes
+          .smalltext Minutes
+        div
+          span.seconds
+          .smalltext Seconds
+      h1.movement1 #{instaObjs.username}
+      button.button(onclick='callLuckDraw()') Click to generate winner
+  script.
+    function callLuckDraw()
+      {
+        console.log("Pressed!");
+       
+        $('#images').load("luckydraw", {"value" : 1}, function(responseText, status)
+        {
+          if (status === 'success') 
+          {
+          
+          }
+        })
+      }
+    function getTimeRemaining(endtime) {
+    var t = Date.parse(endtime) - Date.parse(new Date());
+    var seconds = Math.floor((t / 1000) % 60);
+    var minutes = Math.floor((t / 1000 / 60) % 60);
+    var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+    return {
+    'total': t,
+    'hours': hours,
+    'minutes': minutes,
+    'seconds': seconds
+    };
+    }
+    function initializeClock(id, endtime) {
+    var clock = document.getElementById(id);
+    var hoursSpan = clock.querySelector('.hours');
+    var minutesSpan = clock.querySelector('.minutes');
+    var secondsSpan = clock.querySelector('.seconds');
+    function updateClock() {
+    var t = getTimeRemaining(endtime);
+    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+    if (t.total <= 0) {
+    clearInterval(timeinterval);
+    }
+    }
+    updateClock();
+    var timeinterval = setInterval(updateClock, 1000);
+    }
+    var deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
+    initializeClock('clockdiv', deadline);

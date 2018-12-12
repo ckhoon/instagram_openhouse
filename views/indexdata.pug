@@ -1,38 +1,22 @@
 html
   head
     title Instagram for Open house
-    |   
     link(rel='stylesheet', type='text/css', href='slick.css')
-    |   
     link(rel='stylesheet', type='text/css', href='slick-theme.css')
-  |
-  
   body
-             
-    script(type='text/javascript', src='https://code.jquery.com/jquery-1.11.0.min.js')
-    |   
-    script(type='text/javascript', src='https://code.jquery.com/jquery-migrate-1.2.1.min.js')
-    |   
+    script(type='text/javascript', src='http://code.jquery.com/jquery-1.11.0.min.js')
+    script(type='text/javascript', src='http://code.jquery.com/jquery-migrate-1.2.1.min.js')
     script(type='text/javascript', src='slick.min.js')
-    |  
     script(type='text/javascript').
       $(document).ready(function()
       {
         $('#images').slick({
           rows:2,
-          slidesToShow: 3,
+          slidesToShow: 6,
           slidesToScroll: 1,
           autoplay: true,
-          autoplaySpeed: 2000,
-          });
-
-         $('#like').click(function()
-         {
-              $.post('data', { field1: "hello", field2 : "hello2"}, 
-                function(returnedData)
-                {
-                    console.log(returnedData);
-                });
+          autoplaySpeed: 3000,
+          variableWidth: true,
           });
       });
      
@@ -42,6 +26,7 @@ html
         setInterval(callReload, 120000);
       });
 
+    script(type='text/javascript').
       function callReload()
       {
         $('#images').slick('unslick'); /* ONLY remove the classes and handlers added on initialize */
@@ -59,15 +44,17 @@ html
       {
         return {
           rows:2,
-          slidesToShow: 3,
+          slidesToShow: 6,
           slidesToScroll: 1,
           autoplay: true,
-          autoplaySpeed: 1000,
+          autoplaySpeed: 3000,
+          variableWidth: true,
         }
       }
 
       function callSort(sortBy)
       {
+        console.log("Pressed!");
         $('#images').slick('unslick');
         $('#images').load("sort", {"sortBy" : sortBy}, function(responseText, status)
         {
@@ -78,39 +65,43 @@ html
           }
         })
       }
+
+      function callLuckDraw()
+      {
+        console.log("Pressed!");
+       
+        $('#images').load("luckydraw", {"value" : 1}, function(responseText, status)
+        {
+          if (status === 'success') 
+          {
+          
+          }
+        })
+      }
+
 style.
   /* This is to put border on the header  */
   .navbarz {
   border-bottom: #FFFFFF 10px solid;
   }
   /* pictures animation  */
-  .content {
-  background-image:url(tp9.jpg);
-  animation: snow 40s linear infinite;
-  }
-  @keyframes snow {
-  0% {
-  background-position: 150px 150px, 150px 150px, 150px 150px;
-  }
-  80% {
-  background-position: 500px 1000px, 400px 400px, 300px 300px
-  }
-  }
-
-
-  *,
-  *::before,
-  *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  .content 
+  {
+      background-image:url(tp10.jpg);
+      background-position: center center;
+      background-repeat:  no-repeat;
+      background-attachment: fixed;
+      background-size:  cover;
+      background-color: #999;
+  
   }
   /* All the font for the whole site  */
   body {
   font-family: bodoni mt;
   }
   /* Movement Animation for all footer and header*/
-  .movement {
+  .movement 
+  {
   background: #b71c1c;
   position: relative;
   -webkit-animation: myfirst 1s 1;
@@ -156,14 +147,11 @@ style.
   }
   }
   /* footer Centering & Sizing*/
-  .movement1 {
-  height: 50px;
-  background: #000000;
-  position: relative;
-  bottom: 0;
-  text-align: center;
+  .movement1 
+  {
   animation: blink 3s infinite;
   }
+ 
   /* Blinking of text in the footer*/
   @keyframes blink {
   0% {
@@ -193,18 +181,79 @@ style.
   nav ul a:hover {
   color: white;
   }
+  @font-face 
+  {
+    font-family: myFirstFont;
+    src: url(FunSized.ttf);
+  }
 
-  #images{
+  #images
+  {
     padding:10px;
     margin:15px;
     position: relative;
     display: block;
     left: 100x;
-    top: 5px;
-    border-style: solid;
-    border-color:red;
-    border-width: 4px 6px 4px 10px;
-
+    top: 25px;
+    box-shadow: 0px 1.5px 10px #000000;
+  }
+  .headerlogotext
+  {
+    position: relative;
+    font-size: 30px;
+    left: 3%;
+    bottom: 18%;
+  }
+  .developerlogo
+  {
+    position: relative;
+    width: 50px;
+    height:50px;
+    left: 2%;
+    top: 5%;
+  }
+  .test
+  {
+    position: absolute;
+    bottom: 285px;
+    left: 2px;
+  }
+  .likeText
+  {
+    position: relative;
+    bottom: 300px;
+    left: 65px;
+    font-size: 25px;
+    color:red;
+  }
+  .copyrightText
+  {
+    position: relative;
+    color:  white;
+    top: 1000px;
+    
+  }
+   .movement2 
+  {
+    height: 4%;
+    background: #b71c1c;
+    position: relative;
+    top: 8px;
+    text-align: center;
+  }
+   .test1
+  {
+    position: absolute;
+    bottom: 260px;
+    left: 2px;
+  }
+  .likeText2
+  {
+    position: relative;
+    bottom: 300px;
+    left: 65px;
+    font-size: 25px;
+    color:red;
   }
   
 
@@ -213,17 +262,17 @@ head
   link(href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet')
   // Import materialize.css
     link(rel='shortcut icon' type='image/x-icon' href='tp9.jpg')
+  //link(type='text/css' rel='stylesheet' href='css/materialize.min.css' media='screen,projection')
   link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css')
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
 // Class picturewsz is used for animation and its styling is in main.css
 
-.navbar-fixed(style='height:50px')
+.navbar-fixed(style='height:0px')
   nav.red.darken-4.navbaar.navbarz
     // header
     .nav-wrapper
-      a.brand-logo.movement(href='#') TPOpenhouse 2019 
-      a.sidenav-trigger(href='#' data-target='mobile-nav')
-        i.material-icons menu
+      img.developerlogo(src=`tplogo1.jpg`)
+      a.headerlogotext TP Open House 2019 
       ul.right.hide-on-med-and-down
         li
           a.linkcolor(onclick='callSort("1")') Most Like
@@ -238,28 +287,35 @@ head
           a.linkcolor(onclick='callSort("4")') Least Recent
         li(style='padding:2px')  
          li
-          a.linkcolor(onclick='toggle_visibility;') Lottery Page
+          a.linkcolor(onclick='callLuckDraw()') Lucky draw
           
 // Section: Gallery= To Put text the gallery text
-
-.content(style='height: 100%;margin:0;')
+link(rel='stylesheet', type='text/css', href='layout.css')
+.content
     // Section: Gallery= To Put text the gallery text
     // All Gallery Simulation code put below empty space
     // border Response-img that to make the folder responsive if remove this, it cant zoom
     // Gallery= Do remember to put class="border materialboxed responsive-img">
     section#gallery.section.section-gallery.scrollspy
-      .container
+      h2.hashtag.movement1 #tpopenhouse2019
+      
       #images
-        each instaObj in instaObjs
-          div
-            img(src=`${instaObj.url}` style='width:280px;height:250px;')
-            h6 Likes #{instaObj.likeCount}
-            h6 Posted by #{instaObj.username}
+        link(rel='stylesheet', type='text/css', href='layout.css')
+        each instaObj, i in instaObjs
+          figure.einzel
+            img(src=`${instaObj.url}`, style='width: 300px; height: 300px;')
+            img.test(src='instalove.png', style='width: 65px; height: 65px;')
+            .likeText
+              | #{instaObj.likeCount}
+            figcaption
+              | @#{instaObj.username}
+            br
 
-        h4.center(style='color:white')
-          span.blue-text
+       
         // All Gallery Simulation code put UP at empty space
         // Footer
+    footer(style='position:relative;width: 100%;;bottom:0')
+      h6.copyrightText.movement2 Developed by RHS Team. Copyrighted 2019
         
         // Javascript Codes to be put below here
         script(src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js')
