@@ -40,9 +40,9 @@ function sortByLikeDown(a,b) {
 }
 
 function sortByDateUp(a,b) {
-      if (a.takenAt < b.takenAt)
+      if (b.takenAt < a.takenAt)
         return -1;
-      if (a.takenAt > b.takenAt)
+      if (b.takenAt > a.takenAt)
         return 1;
       return 0;
 }
