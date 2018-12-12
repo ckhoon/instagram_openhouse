@@ -1,0 +1,141 @@
+    /* This is to put border on the header  */
+    .navbarz {
+        border-bottom: #FFFFFF 10px solid;
+    }
+
+
+    /* pictures animation  */
+    .picturesz {
+
+        background-image:
+
+            url(./public/tp9.jpg);
+
+
+        animation: snow 40s linear infinite;
+    }
+
+    @keyframes snow {
+        0% {
+            background-position: 150px 150px, 150px 150px, 150px 150px;
+        }
+
+        80% {
+            background-position: 500px 1000px, 400px 400px, 300px 300px
+        }
+    }
+
+    *,
+    *::before,
+    *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+
+    /* All the font for the whole site  */
+    body {
+        font-family: bodoni mt;
+    }
+
+
+
+    /* Movement Animation for all footer and header*/
+
+    .movement {
+
+        background: #b71c1c;
+        position: relative;
+        -webkit-animation: myfirst 1s 1;
+        /* Safari 4.0 - 8.0 */
+        -webkit-animation-direction: alternate;
+        /* Safari 4.0 - 8.0 */
+        animation: myfirst 5s 1;
+        /*Time of animation and 5s and 1 cycle of animation on refreshing*/
+        animation-direction: alternate;
+    }
+
+    /* Movement of button Colours*/
+    @keyframes myfirst {
+        
+
+        0% {
+            background: rgba(8, 8, 8, 0);
+            left: 0px;
+            top: 0px;
+            color: white;
+        }
+
+        25% {
+            background: #b2dfdb;
+            left: 200px;
+            top: 0px;
+            color: black;
+        }
+
+        50% {
+            background: #b2ebf2;
+            left: 200px;
+            top: 0px;
+            color: white;
+        }
+
+        75% {
+            background: #b3e5fc;
+            left: 0px;
+            top: 0px;
+            color: black;
+        }
+
+        100% {
+            background: rgba(8, 8, 8, 0);
+            left: 0px;
+            top: 0px;
+            color: white;
+        }
+
+
+    }
+
+    /* footer Centering & Sizing*/
+    .movement1 {
+        height: 50px;
+        background: #000000;
+        position: relative;
+		 bottom: 0;
+        text-align: center;
+	
+		animation: blink 3s infinite;
+		
+    }
+
+    /* Blinking of text in the footer*/
+    @keyframes blink {
+  0% {
+    width: 100%;
+    color: white;
+  }
+  25% {
+    color: yellow;
+  }
+  50% {
+    color: blue;
+  }
+  75% {
+    color: orange;
+  }
+  
+  100% {
+    color: green;
+  }
+}
+
+
+
+    /* All Pictures, Most Recent, Mostlikes, lottery*/
+    nav ul a.linkcolor {
+        font-weight: 500;
+        font-size: 20px;
+        color: #ffffff;
+    }

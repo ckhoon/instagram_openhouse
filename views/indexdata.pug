@@ -1,0 +1,268 @@
+html
+  head
+    title Instagram for Open house
+    |   
+    link(rel='stylesheet', type='text/css', href='slick.css')
+    |   
+    link(rel='stylesheet', type='text/css', href='slick-theme.css')
+  |
+  
+  body
+             
+    script(type='text/javascript', src='http://code.jquery.com/jquery-1.11.0.min.js')
+    |   
+    script(type='text/javascript', src='http://code.jquery.com/jquery-migrate-1.2.1.min.js')
+    |   
+    script(type='text/javascript', src='slick.min.js')
+    |  
+    script(type='text/javascript').
+      $(document).ready(function()
+      {
+        $('#images').slick({
+          rows:2,
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          autoplay: true,
+          autoplaySpeed: 2000,
+          });
+
+         $('#like').click(function()
+         {
+              $.post('data', { field1: "hello", field2 : "hello2"}, 
+                function(returnedData)
+                {
+                    console.log(returnedData);
+                });
+          });
+      });
+     
+    script(type='text/javascript').
+      $(document).ready(function()
+      {
+        setInterval(callReload, 120000);
+      });
+
+      function callReload()
+      {
+        $('#images').slick('unslick'); /* ONLY remove the classes and handlers added on initialize */
+        $('#images').load("reload", function(responseText, status) 
+        {
+          if (status === 'success') 
+          {
+            console.log("good");
+            $('#images').slick(getSliderSettings()); /* Initialize the slick again */
+          }
+        });
+      }
+
+      function getSliderSettings()
+      {
+        return {
+          rows:2,
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          autoplay: true,
+          autoplaySpeed: 1000,
+        }
+      }
+
+      function callSort(sortBy)
+      {
+        $('#images').slick('unslick');
+        $('#images').load("sort", {"sortBy" : sortBy}, function(responseText, status)
+        {
+          if (status === 'success') 
+          {
+            console.log("very good");
+            $('#images').slick(getSliderSettings());
+          }
+        })
+      }
+style.
+  /* This is to put border on the header  */
+  .navbarz {
+  border-bottom: #FFFFFF 10px solid;
+  }
+  /* pictures animation  */
+  .content {
+  background-image:url(tp9.jpg);
+  animation: snow 40s linear infinite;
+  }
+  @keyframes snow {
+  0% {
+  background-position: 150px 150px, 150px 150px, 150px 150px;
+  }
+  80% {
+  background-position: 500px 1000px, 400px 400px, 300px 300px
+  }
+  }
+
+
+  *,
+  *::before,
+  *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+  /* All the font for the whole site  */
+  body {
+  font-family: bodoni mt;
+  }
+  /* Movement Animation for all footer and header*/
+  .movement {
+  background: #b71c1c;
+  position: relative;
+  -webkit-animation: myfirst 1s 1;
+  /* Safari 4.0 - 8.0 */
+  -webkit-animation-direction: alternate;
+  /* Safari 4.0 - 8.0 */
+  animation: myfirst 5s 1;
+  /*Time of animation and 5s and 1 cycle of animation on refreshing*/
+  animation-direction: alternate;
+  }
+  /* Movement of button Colours*/
+  @keyframes myfirst {
+  ;
+  0% {
+  background: rgba(8, 8, 8, 0);
+  left: 0px;
+  top: 0px;
+  color: white;
+  }
+  25% {
+  background: #b2dfdb;
+  left: 200px;
+  top: 0px;
+  color: black;
+  }
+  50% {
+  background: #b2ebf2;
+  left: 200px;
+  top: 0px;
+  color: white;
+  }
+  75% {
+  background: #b3e5fc;
+  left: 0px;
+  top: 0px;
+  color: black;
+  }
+  100% {
+  background: rgba(8, 8, 8, 0);
+  left: 0px;
+  top: 0px;
+  color: white;
+  }
+  }
+  /* footer Centering & Sizing*/
+  .movement1 {
+  height: 50px;
+  background: #000000;
+  position: relative;
+  bottom: 0;
+  text-align: center;
+  animation: blink 3s infinite;
+  }
+  /* Blinking of text in the footer*/
+  @keyframes blink {
+  0% {
+  width: 100%;
+  color: white;
+  }
+  25% {
+  color: yellow;
+  }
+  50% {
+  color: blue;
+  }
+  75% {
+  color: orange;
+  }
+  100% {
+  color: green;
+  }
+  }
+  /* All Pictures, Most Recent, Mostlikes, lottery*/
+  nav ul a.linkcolor {
+  font-weight: 500;
+  font-size: 20px;
+  color: #b71c1c;
+  }
+  /* hover effect on all the tabs*/
+  nav ul a:hover {
+  color: white;
+  }
+
+  #images{
+    padding:10px;
+    margin:15px;
+    position: relative;
+    display: block;
+    left: 100x;
+    top: 5px;
+    border-style: solid;
+    border-color:red;
+    border-width: 4px 6px 4px 10px;
+
+  }
+  
+
+head
+  // Import Google Icon Font
+  link(href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet')
+  // Import materialize.css
+    link(rel='shortcut icon' type='image/x-icon' href='tp9.jpg')
+  link(type='text/css' rel='stylesheet' href='css/materialize.min.css' media='screen,projection')
+  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+// Class picturewsz is used for animation and its styling is in main.css
+
+.navbar-fixed(style='height:50px')
+  nav.red.darken-4.navbaar.navbarz
+    // header
+    .nav-wrapper
+      a.brand-logo.movement(href='#') TPOpenhouse 2019 
+      a.sidenav-trigger(href='#' data-target='mobile-nav')
+        i.material-icons menu
+      ul.right.hide-on-med-and-down
+        li
+          a.linkcolor(onclick='callSort("1")') Most Like
+        li(style='padding:2px')  
+        li
+          a.linkcolor(onclick='callSort("2")') Least Like
+        li(style='padding:2px')  
+        li
+          a.linkcolor(onclick='callSort("3")') Most Recent
+        li(style='padding:2px')  
+        li
+          a.linkcolor(onclick='callSort("4")') Least Recent
+        li(style='padding:2px')  
+         li
+          a.linkcolor(onclick='toggle_visibility;') Lottery Page
+          
+// Section: Gallery= To Put text the gallery text
+
+.content(style='height: 100%;margin:0;')
+    // Section: Gallery= To Put text the gallery text
+    // All Gallery Simulation code put below empty space
+    // border Response-img that to make the folder responsive if remove this, it cant zoom
+    // Gallery= Do remember to put class="border materialboxed responsive-img">
+    section#gallery.section.section-gallery.scrollspy
+      .container
+      #images
+        each instaObj in instaObjs
+          div
+            img(src=`${instaObj.url}` style='width:280px;height:250px;')
+            h6 Likes #{instaObj.likeCount}
+            h6 Posted by #{instaObj.username}
+
+        h4.center(style='color:white')
+          span.blue-text
+        // All Gallery Simulation code put UP at empty space
+        // Footer
+        
+        // Javascript Codes to be put below here
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js')
+
+

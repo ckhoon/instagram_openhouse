@@ -1,0 +1,5 @@
+each instaObj in instaObjs
+  div
+    img(src=`${instaObj.url}` style='width:280px;height:250px;')
+    h6 Likes #{instaObj.likeCount}
+    h6 Posted by #{instaObj.username}
