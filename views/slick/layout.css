@@ -11,13 +11,21 @@
   {
     position: relative;
     bottom: 310px;
-    left: -10px;
+    left: 0px;
   }
   .likeText
   {
     position: relative;
     bottom: 360px;
-    left: 45px;
+    left: 65px;
+    font-size: 25px;
+    color:red;
+  }
+  .likeTextHome-unused
+  {
+    position: absolute;
+    top: 0px;
+    left: 65px;
     font-size: 25px;
     color:red;
   }
@@ -59,10 +67,10 @@ figcaption
   background: rgba(0, 0, 0, 0.5);
   color: white;
   font: 400 18px/26px Verdana, sans-serif;
-  padding: .3em .3em;
+  padding: .3em 0;
   position: absolute;
   bottom: 0;
-  text-align: right;
+  text-align: center;
   width: 100%;
 }
 

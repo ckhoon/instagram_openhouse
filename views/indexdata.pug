@@ -3,6 +3,8 @@ html
     title Instagram for Open house
     link(rel='stylesheet', type='text/css', href='slick.css')
     link(rel='stylesheet', type='text/css', href='slick-theme.css')
+    link(rel='stylesheet', type='text/css', href='indexdata.css')
+    link(rel='stylesheet', type='text/css', href='layout.css')
   body
     script(type='text/javascript', src='https://code.jquery.com/jquery-1.11.0.min.js')
     script(type='text/javascript', src='https://code.jquery.com/jquery-migrate-1.2.1.min.js')
@@ -10,20 +12,8 @@ html
     script(type='text/javascript').
       $(document).ready(function()
       {
-        $('#images').slick({
-          rows:2,
-          slidesToShow: 6,
-          slidesToScroll: 1,
-          autoplay: true,
-          autoplaySpeed: 3000,
-          variableWidth: true,
-          });
-      });
-     
-    script(type='text/javascript').
-      $(document).ready(function()
-      {
         setInterval(callReload, 120000);
+        $('#images').slick(getSliderSettings());
       });
 
     script(type='text/javascript').
@@ -34,7 +24,6 @@ html
         {
           if (status === 'success') 
           {
-            console.log("good");
             $('#images').slick(getSliderSettings()); /* Initialize the slick again */
           }
         });
@@ -43,25 +32,51 @@ html
       function getSliderSettings()
       {
         return {
+          dots: true,
+          infinite: false,
+          speed: 300,
+          slidesToShow: 4,
+          slidesToScroll: 4,
           rows:2,
-          slidesToShow: 6,
-          slidesToScroll: 1,
           autoplay: true,
-          autoplaySpeed: 3000,
-          variableWidth: true,
-        }
-      }
+          autoplaySpeed: 5000,
+          infinite: true,
+          responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                infinite: true,
+                dots: true
+              }
+            },
+            {
+              breakpoint: 600,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+              }
+            }
+          ]
+        
+        }     }
 
       function callSort(sortBy)
       {
-        console.log("Pressed!");
         $('#images').slick('unslick');
         $('#images').load("sort", {"sortBy" : sortBy}, function(responseText, status)
         {
           if (status === 'success') 
           {
-            console.log("very good");
-            $('#images').slick(getSliderSettings());
+           $('#images').slick(getSliderSettings());
           }
         })
       }
@@ -79,183 +94,17 @@ html
         })
       }
 
-style.
-  /* This is to put border on the header  */
-  .navbarz {
-  border-bottom: #FFFFFF 10px solid;
-  }
-  /* pictures animation  */
-  .content 
-  {
-      background-image:url(tp10.jpg);
-      background-position: center center;
-      background-repeat:  no-repeat;
-      background-attachment: fixed;
-      background-size:  cover;
-      background-color: #999;
-  
-  }
-  /* All the font for the whole site  */
-  body {
-  font-family: bodoni mt;
-  }
-  /* Movement Animation for all footer and header*/
-  .movement 
-  {
-  background: #b71c1c;
-  position: relative;
-  -webkit-animation: myfirst 1s 1;
-  /* Safari 4.0 - 8.0 */
-  -webkit-animation-direction: alternate;
-  /* Safari 4.0 - 8.0 */
-  animation: myfirst 5s 1;
-  /*Time of animation and 5s and 1 cycle of animation on refreshing*/
-  animation-direction: alternate;
-  }
-  /* Movement of button Colours*/
-  @keyframes myfirst {
-  ;
-  0% {
-  background: rgba(8, 8, 8, 0);
-  left: 0px;
-  top: 0px;
-  color: white;
-  }
-  25% {
-  background: #b2dfdb;
-  left: 200px;
-  top: 0px;
-  color: black;
-  }
-  50% {
-  background: #b2ebf2;
-  left: 200px;
-  top: 0px;
-  color: white;
-  }
-  75% {
-  background: #b3e5fc;
-  left: 0px;
-  top: 0px;
-  color: black;
-  }
-  100% {
-  background: rgba(8, 8, 8, 0);
-  left: 0px;
-  top: 0px;
-  color: white;
-  }
-  }
-  /* footer Centering & Sizing*/
-  .movement1 
-  {
-  animation: blink 3s infinite;
-  }
- 
-  /* Blinking of text in the footer*/
-  @keyframes blink {
-  0% {
-  width: 100%;
-  color: white;
-  }
-  25% {
-  color: yellow;
-  }
-  50% {
-  color: blue;
-  }
-  75% {
-  color: orange;
-  }
-  100% {
-  color: green;
-  }
-  }
-  /* All Pictures, Most Recent, Mostlikes, lottery*/
-  nav ul a.linkcolor {
-  font-weight: 500;
-  font-size: 20px;
-  color: #b71c1c;
-  }
-  /* hover effect on all the tabs*/
-  nav ul a:hover {
-  color: white;
-  }
-  @font-face 
-  {
-    font-family: myFirstFont;
-    src: url(FunSized.ttf);
-  }
-
-  #images
-  {
-    padding:10px;
-    margin:15px;
-    position: relative;
-    display: block;
-    left: 100x;
-    top: 25px;
-    box-shadow: 0px 1.5px 10px #000000;
-  }
-  .headerlogotext
-  {
-    position: relative;
-    font-size: 30px;
-    left: 3%;
-    bottom: 18%;
-  }
-  .developerlogo
-  {
-    position: relative;
-    width: 50px;
-    height:50px;
-    left: 2%;
-    top: 5%;
-  }
-  .test
-  {
-    position: absolute;
-    bottom: 285px;
-    left: 2px;
-  }
-  .likeText
-  {
-    position: relative;
-    bottom: 300px;
-    left: 65px;
-    font-size: 25px;
-    color:red;
-  }
-  .copyrightText
-  {
-    position: relative;
-    color:  white;
-    top: 1000px;
-    
-  }
-   .movement2 
-  {
-    height: 4%;
-    background: #b71c1c;
-    position: relative;
-    top: 8px;
-    text-align: center;
-  }
-   .test1
-  {
-    position: absolute;
-    bottom: 260px;
-    left: 2px;
-  }
-  .likeText2
-  {
-    position: relative;
-    bottom: 300px;
-    left: 65px;
-    font-size: 25px;
-    color:red;
-  }
-  
+      function callDelete(urlID)
+      {
+        $('#images').slick('unslick');
+        $('#images').load("deleteimage", {"urlID" : urlID}, function(responseText, status)
+        {
+          if (status === 'success') 
+          {
+            $('#images').slick(getSliderSettings());          
+          }
+        })
+      }
 
 head
   // Import Google Icon Font
@@ -272,7 +121,7 @@ head
     // header
     .nav-wrapper
       img.developerlogo(src=`tplogo1.jpg`)
-      a.headerlogotext TP Open House 2019 
+      a.headerlogotext TP Openhouse 2019 &nbsp|&nbsp School of Engineering 
       ul.right.hide-on-med-and-down
         li
           a.linkcolor(onclick='callSort("1")') Most Like
@@ -297,25 +146,28 @@ link(rel='stylesheet', type='text/css', href='layout.css')
     // border Response-img that to make the folder responsive if remove this, it cant zoom
     // Gallery= Do remember to put class="border materialboxed responsive-img">
     section#gallery.section.section-gallery.scrollspy
-      h2.hashtag.movement1 #tpopenhouse2019
+      h2.hashtag.movement1 Follow @tpengine &nbsp &nbsp &nbsp &nbsp #tpengine IG Post
       
       #images
-        link(rel='stylesheet', type='text/css', href='layout.css')
-        each instaObj, i in instaObjs
-          figure.einzel
-            img(src=`${instaObj.url}`, style='width: 300px; height: 300px;')
-            img.test(src='instalove.png', style='width: 65px; height: 65px;')
-            .likeText
-              | #{instaObj.likeCount}
-            figcaption
-              | @#{instaObj.username}
-            br
-
+        each instaObj in instaObjs
+          - var found = false;
+          each filterImage in filterImages
+            if filterImage == instaObj.urlID
+              - found = true;
+          if found == false
+            figure.einzel
+              img(src=`${instaObj.url}`, style='width: 800px; height: 600px;', , onclick="callDelete('" + instaObj.urlID + "')")
+              img.test1(src='instalove.png', style='width: 65px; height: 65px; bottom: 605px; position: relative;') 
+              .likeTextHome
+                | #{instaObj.likeCount} 
+              figcaption
+                | @#{instaObj.username}
+                br
        
         // All Gallery Simulation code put UP at empty space
         // Footer
     footer(style='position:relative;width: 100%;;bottom:0')
-      h6.copyrightText.movement2 Developed by RHS Team. Copyrighted 2019
+      h6.copyrightText.movement2 Developed by Syafiq, Raihan, Hidhir &nbsp|&nbsp Diploma in Computer Engineering
         
         // Javascript Codes to be put below here
         script(src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js')

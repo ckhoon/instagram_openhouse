@@ -1,10 +1,14 @@
-link(rel='stylesheet', type='text/css', href='layout.css')
-each instaObj, i in instaObjs
-  figure.einzel
-    img(src=`${instaObj.url}`, style='width: 300px; height: 300px;')
-    img.test(src='instalove.png', style='width: 65px; height: 65px;')
-    .likeText
-      | #{instaObj.likeCount}
-    figcaption
-      | @#{instaObj.username}
-    br
+each instaObj in instaObjs
+  - var found = false;
+  each filterImage in filterImages
+    if filterImage == instaObj.urlID
+      - found = true;
+  if found == false
+    figure.einzel
+      img(src=`${instaObj.url}`, style='width: 800px; height: 600px;', , onclick="callDelete('" + instaObj.urlID + "')")
+      img.test1(src='instalove.png', style='width: 65px; height: 65px; bottom: 605px; position: relative;') 
+      .likeTextHome
+        | #{instaObj.likeCount} 
+      figcaption
+        | @#{instaObj.username}
+        br

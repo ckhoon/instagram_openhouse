@@ -8,6 +8,7 @@ var app = express();
 
 app.use(express.static('public'));
 app.use(express.static('views/slick'));
+app.use(express.static('views/css'));
 
 app.use(express.json());       // to support JSON-encoded bodies
 app.use(express.urlencoded()); // to support URL-encoded bodies

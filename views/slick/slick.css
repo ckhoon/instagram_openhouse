@@ -80,7 +80,7 @@
 {
     display: none;
     float: left;
-    top: 400px;
+    top: 10px;
     width: 300px;
 
     height:74%;
@@ -88,7 +88,7 @@
 }
 [dir='rtl'] .slick-slide
 {
-    float: right;
+    float: left;
 }
 .slick-slide img
 {
@@ -125,3 +125,4 @@
 .slick-arrow.slick-hidden {
     display: none;
 }
+
