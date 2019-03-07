@@ -1,6 +1,5 @@
 var express = require('express');
 var path = require('path');
-//var datarouter = require('./web/datarouter');
 var methods = require('./web/RHS_Maincode.js');
 var bodyParser = require('body-parser');
 
@@ -21,7 +20,6 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 // Load View Engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine','pug');
-
 
 function sortByLikeUp(a,b) {
       if (b.likeCount < a.likeCount)
@@ -55,8 +53,9 @@ function sortByDateDown(a,b) {
       return 0;
 }
 
-var _sortBy = sortByLikeUp;
+var _sortBy = sortByDateUp;
 var _instaObjs = [];
+var _filterImages = [];
 
 //Home route
 app.get('/', function(req, res)
@@ -68,22 +67,21 @@ app.get('/data', function(req, res)
 {
     methods.instainfo(function cb(instaObjs){
         _instaObjs = instaObjs.sort(_sortBy);
-        res.render('indexdata', {"instaObjs" : _instaObjs});
+        res.render('indexdata', {"instaObjs" : _instaObjs, "filterImages" : _filterImages});
     });
 });
 
 app.get('/reload', function(req, res)
 {   
-    console.log("reloaded");
-    methods.instainfo(function cb(instaObjs){
+    methods.instainfo(function cb(instaObjs)
+    {
         _instaObjs = instaObjs.sort(_sortBy);
-        res.render('reload', {"instaObjs" : _instaObjs});
+        res.render('reload', {"instaObjs" : _instaObjs, "filterImages" : _filterImages});
     });
 })
 
 app.post('/sort', function(req, res)
 {
-    console.log(req.body);
     switch(req.body.sortBy){
         case '1' :
                 _sortBy = sortByLikeUp;
@@ -98,12 +96,29 @@ app.post('/sort', function(req, res)
                 _sortBy = sortByDateDown;
                 break;
         default :
-                _sortBy = sortByLikeUp;
+                _sortBy = sortByDateUp;
                 break;
     }
     _instaObjs = _instaObjs.sort(_sortBy);
-    res.render('reload', {"instaObjs" : _instaObjs});
+    res.render('reload', {"instaObjs" : _instaObjs, "filterImages" : _filterImages});
 })
+
+app.post('/deleteimage', function(req, res)
+{
+  var imgID = req.body.urlID;
+  _filterImages.push(imgID);
+  res.render('reload', {"instaObjs" : _instaObjs, "filterImages" : _filterImages});
+})
+
+app.post('/luckydraw', function(req, res)
+{
+    methods.instainfo(function cb(instaObjs)
+    {
+        var myArray = instaObjs;
+        var randomWinner = myArray[Math.floor(Math.random()*myArray.length)];
+        res.render('luckydraw', {"instaObjs" : randomWinner});
+    });
+});
 
 //Start server
 server_port = process.env.PORT || 3000;

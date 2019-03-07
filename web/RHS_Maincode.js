@@ -5,7 +5,8 @@ var _ = require('lodash');
 var Promise = require('bluebird');
 var TPHashtag= 'temasekpoly'
 
-Client.Session.create(device, storage, 'tpopenhouse2019', 'rhsmusibot2k19')
+//Client.Session.create(device, storage, 'tpopenhouse2019', 'rhsmusibot2k19')
+Client.Session.create(device, storage, 'openhouse_tp_eng', 'Temasekpoly#')
 	.then(function(session) 
 	{
 
@@ -33,11 +34,10 @@ function parseMillisecondsIntoReadableTime(milliseconds)
 
 function instainfo(instainfo_callback) 
 {
-	//var TPHashtag= 'rhstpopenhouse2019'
 	var session = new Client.Session(device, storage)
 	var feed = new Client.Feed.TaggedMedia(session, TPHashtag);
 
-	Promise.mapSeries(_.range(0, 1), function() 
+	Promise.mapSeries(_.range(0,1), function() 
 	{
 		return feed.get();
 	})
@@ -45,58 +45,26 @@ function instainfo(instainfo_callback)
 	{
 		// result should be Media[][]
 		var mediaFeed = _.flatten(results);
-		/*
-		var urls = _.map(mediaFeed, function(medium) 
-		{
-			if(!medium._params.images[0].url){
-				return (medium._params.images[0][0].url);
-			}
-			return (medium._params.images[0].url);
-		});
-                   
-        var likes = _.map(mediaFeed, function(medium) 
-		{
-			return (medium._params.likeCount);
-		});
 
-        var datePosted = _.map(mediaFeed, function(medium) 
-		{
-			return(medium._params.takenAt);
-		});
-
-		var postedBy = _.map(mediaFeed, function(medium) 
-		{
-			return(medium._params.user.username);
-		});
-		*/
 		var instaObjs = _.map(mediaFeed, function(medium) 
 		{
 			var obj = {};
-			if(!medium._params.images[0].url){
+			if(!medium._params.images[0].url)
+			{
 				obj.url = medium._params.images[0][0].url;
-			}else{
+			}
+			else
+			{
 				obj.url = medium._params.images[0].url;
 			}
 			obj.likeCount = medium._params.likeCount;
 			obj.takenAt = medium._params.takenAt;
 			obj.username = medium._params.user.username;
+			obj.urlID = medium._params.id;
 			return(obj);
 		});
 
-/*
-        // ------------- Convert from milliseconds to Date -------//
-		var milliToConvert = datePosted;
-		
-        new Date(+milliToConvert);
-        const timeposted = new Date(parseInt(milliToConvert,10));
-		module.exports.instagramPostedDate = timeposted;   
-        // ------------------------------------------------------//
-        
-    	//------------ Convert milliseconds to Time ------//
-		var time = parseMillisecondsIntoReadableTime();
-        module.exports.instagramTimePosted = timeposted;
-    	//-----------------------------------------------// 
-*/
+		//console.log(instaObjs);
 		console.log("total : " + instaObjs.length);
 		//console.log("obj : " + instaObjs[0].url);			
 		//console.log("total : " + postedBy.length);
