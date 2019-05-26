@@ -3,7 +3,7 @@ var device = new Client.Device('tpopenhouse2019');
 var storage = new Client.CookieFileStorage(__dirname + '/someuser.json');
 var _ = require('lodash');
 var Promise = require('bluebird');
-var TPHashtag= 'temasekpoly'
+var TPHashtag= 'tpengine'
 
 //Client.Session.create(device, storage, 'tpopenhouse2019', 'rhsmusibot2k19')
 Client.Session.create(device, storage, 'openhouse_tp_eng', 'Temasekpoly#')
@@ -46,6 +46,30 @@ function instainfo(instainfo_callback)
 		// result should be Media[][]
 		var mediaFeed = _.flatten(results);
 
+		var objs = [];
+		for (i=0; i<mediaFeed.length; i++)
+		{
+			//console.log(mediaFeed[i]._params.images.length + " ---- " );
+			//console.log(mediaFeed[i]._params.images);
+			for (j=0; j<mediaFeed[i]._params.images.length; j++)
+			{
+				var obj = {};
+				if(!mediaFeed[i]._params.images[j].url)
+				{
+					obj.url = mediaFeed[i]._params.images[j][0].url;			}
+				else
+				{
+					obj.url = mediaFeed[i]._params.images[j].url;
+				}
+				obj.likeCount = mediaFeed[i]._params.likeCount;
+				obj.takenAt = mediaFeed[i]._params.takenAt;
+				obj.username = mediaFeed[i]._params.user.username;
+				obj.urlID = mediaFeed[i]._params.id;
+				objs.push(obj);
+			}
+
+		}
+/*
 		var instaObjs = _.map(mediaFeed, function(medium) 
 		{
 			var obj = {};
@@ -63,9 +87,11 @@ function instainfo(instainfo_callback)
 			obj.urlID = medium._params.id;
 			return(obj);
 		});
+*/
 
 		//console.log(instaObjs);
-		console.log("total : " + instaObjs.length);
+		//console.log("total : " + instaObjs.length);
+		console.log("total : " + objs.length);
 		//console.log("obj : " + instaObjs[0].url);			
 		//console.log("total : " + postedBy.length);
 		//console.log("total : " + urls.length);
@@ -79,7 +105,8 @@ function instainfo(instainfo_callback)
         //module.exports.instagramURL = urls;
 		//module.exports.instagramLikes = likes;
 		//module.exports.datePosted = datePosted;
-		instainfo_callback(instaObjs);
+		//instainfo_callback(instaObjs);
+		instainfo_callback(objs);
 	})
 }
 
