@@ -5,8 +5,8 @@ each instaObj in instaObjs
       - found = true;
   if found == false
     figure.einzel
-      img(src=`${instaObj.url}`, style='width: 800px; height: 600px;', , onclick="callDelete('" + instaObj.urlID + "')")
-      img.test1(src='instalove.png', style='width: 65px; height: 65px; bottom: 605px; position: relative;') 
+      img(src=`${instaObj.url}`, style='width: 350px; height: 300px ; object-fit:fill;', onclick="callDelete('" + instaObj.urlID + "')")
+      img.test1(src='instalove.png', style='width: 65px; height: 65px; bottom: 305px; position: relative;') 
       .likeTextHome
         | #{instaObj.likeCount} 
       figcaption
