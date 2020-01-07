@@ -1,6 +1,7 @@
 var Client = require('instagram-private-api').V1;
 var device = new Client.Device('tpopenhouse2019');
-var storage = new Client.CookieFileStorage(__dirname + '/someuser.json');
+//var storage = new Client.CookieFileStorage(__dirname + '/user.json');
+var storage = new Client.CookieFileStorage('someuser.json');
 var _ = require('lodash');
 var Promise = require('bluebird');
 var TPHashtag= 'tpengine'
@@ -56,10 +57,12 @@ function instainfo(instainfo_callback)
 				var obj = {};
 				if(!mediaFeed[i]._params.images[j].url)
 				{
-					obj.url = mediaFeed[i]._params.images[j][0].url;			}
+					obj.url = mediaFeed[i]._params.images[j][0].url;
+				}
 				else
 				{
 					obj.url = mediaFeed[i]._params.images[j].url;
+					j = mediaFeed[i]._params.images.length;
 				}
 				obj.likeCount = mediaFeed[i]._params.likeCount;
 				obj.takenAt = mediaFeed[i]._params.takenAt;
